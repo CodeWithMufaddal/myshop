@@ -28,14 +28,12 @@ export const loginUser = createAsyncThunk('user/login', async ({
 			identifier: email,
 			password: password
 		});
-
-		successToast(`Welcome ${response.user.username} 😃`)
-
+		successToast(`Welcome ${response.data.user.username} 😃`)
 		return await response.data;
 	} catch (error) {
 		console.log(error, 'res from login');
 		return rejectWithValue({
-			error: error.response.data ? error.response.data.error.message : error.message
+			error: error.response.data ? error.response.data.error.message : error.error.message
 		});
 	}
 });
